@@ -1,0 +1,8 @@
+〇gulp スタート
+npx gulp
+
+〇アイコンフォント作成
+npm run gulp Iconfont
+
+nove -v
+8.11.4

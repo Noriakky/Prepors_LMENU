@@ -1,0 +1,483 @@
+// 旧メディアクエリ用変数
+$sp-small: "only screen and (max-width:413px)";
+$sp: "only screen and (max-width:767px)";
+$pc: "print, screen and (min-width:768px)";
+$pc-middle: "print, screen and (min-width:768px) and (max-width:1400px)";
+$pc-middle-small: "print, screen and (min-width:768px) and (max-width:1200px)";
+$pc-large: "print, screen and (min-width: 1401px)";
+$retina: "only screen and (-webkit-min-device-pixel-ratio: 1.2),(min-resolution: 2dppx)";
+
+// compass使用時 IE9グラデーション対応用記述
+$experimental-support-for-svg: true;
+
+// 変数設定
+$cont_min_width: 1000px;
+$cont_max_width: 1060px;
+$cont_width: 1200px;
+$main_color: #004795;
+$bg_color: #ffffff;
+$sub_color: #cc0063;
+$sub_l_color: #eacdcd;
+$hover_color: #413993;
+$red: #B12222;
+$gray: #e5e5e5;
+$purple: #f0efff;
+$l_blue: #4170a3;
+$yellow: #ffef1d;
+$header_color: #fff;
+$footer_color: #065456;
+$text_color: #000;
+$link_color: #1a502f;
+$border_color: #ccc;
+$darkBlue: #072647;
+$w_gray: #f9f9f9;
+$green: #85b03e;
+
+$ms: #495cff;
+$is: #82007f;
+$bn: #49a4a5;
+$dt: #fe9c25;
+
+$mid: 500;
+$bold: 700;
+
+// extend用 clearfix
+%clearfix {
+  display: inline-block;
+  & {
+    display: block;
+  }
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
+    height: 0;
+  }
+}
+
+@mixin iconfont {
+  font-family: "icon";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin mincho {
+  // font-family: "Roboto Slab", Garamond, "Times New Roman", "游明朝", "Yu Mincho", "游明朝体", "YuMincho", "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", "HiraMinProN-W3", "HGS明朝E", "ＭＳ Ｐ明朝", "MS PMincho", serif;
+  font-family: "游明朝", "Yu Mincho", "游明朝体", "YuMincho",
+    "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", "HiraMinProN-W3", "HGS明朝E",
+    "ＭＳ Ｐ明朝", "MS PMincho", serif;
+}
+
+@mixin Gothic {
+  font-family: "游ゴシック", "Yu Gothic", "游ゴシック体", "YuGothic",
+    "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Meiryo UI", "メイリオ",
+    Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+}
+
+// 新メディアクエリ用設定
+// 例)
+// @include sp{
+//     スマホ用CSS
+// }
+
+@mixin spse {
+  @media only screen and (max-width: 320px) {
+    @content;
+  }
+}
+
+@mixin spSmall {
+  @media only screen and (max-width: 414px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media only screen and (max-width: 991px) {
+    @content;
+  }
+}
+
+@mixin sp {
+  @media only screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin pc {
+  @media only screen and (min-width: 769px) {
+    @content;
+  }
+}
+
+@mixin min-width {
+  @media only screen and (min-width: 1080px) {
+    @content;
+  }
+}
+
+@mixin max-width {
+  @media only screen and (max-width: 1080px) {
+    @content;
+  }
+}
+
+//linkerアイコンmixin
+@mixin icon-linker {
+  &.pdf,
+  &.xls,
+  &.doc,
+  &.blank {
+    &:after {
+      display: inline-block;
+      padding: 0 4px;
+      vertical-align: middle;
+    }
+  }
+  &.pdf {
+    &:after {
+      content: url("/img/common/ico-pdf.png");
+      display: inline-block;
+    }
+  }
+  &.xls {
+    &:after {
+      content: url("/img/common/ico-excel.png");
+      display: inline-block;
+    }
+  }
+  &.doc {
+    &:after {
+      content: url("/img/common/ico-word.png");
+      display: inline-block;
+    }
+  }
+  &.blank {
+    &:after {
+      content: url("/img/common/ico-blank.png");
+      display: inline-block;
+      margin-top: -5px;
+      padding-right: 0.5em;
+    }
+  }
+}
+
+$prefix: "-webkit-", "-moz-", "-o-", "-ms-", "";
+
+// 不透明度設定
+// 例) @include opacity(0.5);
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacityIE: $opacity * 100;
+  filter: alpha(opacity=$opacityIE);
+}
+
+// 明度の調節
+@mixin darken($darken) {
+  background-color: #{darken} ($darken);
+}
+
+// パーセント表示用（サイズ変更可能）
+// フォントサイズ変更用JSなど使用する際に有効
+// @mixin fontsize($fontSize, $baseFontSize:16){
+// 	font-size: percentage($fontSize / $baseFontSize);
+// }
+// rem表示用（サイズ変更不可）
+// フォントサイズ固定の際に有効
+@mixin fontsize($size, $base: 16) {
+  font-size: $size + px;
+  font-size: calc($size / $base) + rem;
+}
+
+// clampによるfont-size指定
+// 推奨値（320）は最小値を使うブレイクポイントを入力
+// rootのフォントサイズは16pxを想定しています。$baseはrootのフォントサイズに合わせてください。
+@mixin CL_fontsize($minFontSize, $maxFontSize, $base:16) {
+  font-size: clamp(($minFontSize/$base)*1rem, (($minFontSize / 320) * 100)*1vw, ($maxFontSize/$base)*1rem);
+}
+
+// clearfix
+// 例) @include clearfix;
+@mixin clearfix() {
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+
+// 背景画像用テキスト非表示設定
+// 例) @include textOver();
+@mixin textOver {
+  display: block;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+// position:absolute時の指定
+// 例) @include absposition(10px 10px 10px 10px);
+@mixin absPosition($top: auto, $right: auto, $bottom: auto, $left: auto) {
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+// box-sizing
+// 例) @include box()
+@mixin box($type: border-box) {
+  -webkit-box-sizing: $type;
+  -moz-box-sizing: $type;
+  box-sizing: $type;
+}
+
+// box-shadow
+@mixin box-shadow($value) {
+  -webkit-box-shadow: $value;
+  -moz-box-shadow: $value;
+  box-shadow: $value;
+}
+
+// border-radius
+// 例) @include radius(10px);
+@mixin radius($px) {
+  -moz-border-radius: $px;
+  -webkit-border-radius: $px;
+  border-radius: $px;
+}
+
+// transform
+// 例） @include transform(transition(0,-50%));
+@mixin transform($value...) {
+  -webkit-transform: $value;
+  -moz-transform: $value;
+  -ms-transform: $value;
+  -o-transform: $value;
+  transform: $value;
+}
+
+// transition
+// 例） @include transform(transition(0,-50%));
+@mixin transition($value...) {
+  -webkit-transition: $value;
+  -moz-transition: $value;
+  -ms-transition: $value;
+  -o-transition: $value;
+  transition: $value;
+}
+
+// 背景画像（アイコンなどサイズが確定しているもの）
+// 例)
+// @include bg("common/sample.png"); PC画像
+// @include bg("common/sample.png",2); SP画像
+@mixin bg($name, $dpi: 1) {
+  @if $dpi == 1 {
+    display: inline-block;
+  }
+  width: width($name, $dpi);
+  height: height($name, $dpi);
+  background: resolve($name) no-repeat;
+  background-size: size($name, $dpi);
+  @if $dpi == 1 {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
+
+// アイコンなどtextOverしなくて良い画像設置の際
+// @include bgIcon("common/sample.png"); PC画像
+// @include bgIcon("common/sample.png",2); SP画像
+@mixin bgIcon($name, $dpi: 1) {
+  @if $dpi == 1 {
+    display: inline-block;
+  }
+  width: width($name, $dpi);
+  height: height($name, $dpi);
+  background: resolve($name) no-repeat;
+  background-size: size($name, $dpi);
+}
+
+// 背景画像のサイズ変更
+// 例)
+// @include bgSize(10px auto);
+// @include bgSize(cover);
+@mixin bgSize($size) {
+  -webkit-background-size: $size;
+  -moz-background-size: $size;
+  -o-background-size: $size;
+  background-size: $size;
+}
+
+// ゴーストボタン
+// 例) @include ghostButton(“Trebuchet”, 12px, #ffffff, 5px, #34dec6, 4px, 300ms, #000000 );
+@mixin ghostButton(
+  $font,
+  $font-size,
+  $font-color,
+  $border-size,
+  $border-color,
+  $padding,
+  $transition-speed,
+  $hover-color
+) {
+  display: inline-block;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: $font;
+  font-size: $font-size;
+  color: $font-color;
+  border: $border-size solid $border-color;
+  padding: $padding;
+  -webkit-transition: color $transition-speed, background $transition-speed;
+  transition: color $transition-speed, background $transition-speed;
+  &:hover {
+    background: $border-color;
+    color: $hover-color;
+  }
+}
+
+// compass使用時のグラーデーションをmixinで代用
+@mixin background($value) {
+  background: -moz-$value;
+  background: -webkit-$value;
+  background: $value;
+}
+
+// compass使用時の背景画像サイズをmixinで代用
+@mixin background-size($value) {
+  -webkit-background-size: $value;
+  -moz-background-size: $value;
+  -o-background-size: $value;
+  background-size: $value;
+}
+
+// グラデーション mxinオリジナルバージョン
+//@include gradient(#ff00ff, #ff00cc, vertical);
+@mixin gradient($start-color, $end-color, $orientation) {
+  background: $start-color;
+  @if $orientation == vertical {
+    // vertical
+    background: -moz-linear-gradient(top, $start-color 0%, $end-color 100%);
+    background: -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      color-stop(0%, $start-color),
+      color-stop(100%, $end-color)
+    );
+    background: -webkit-linear-gradient(top, $start-color 0%, $end-color 100%);
+    background: -o-linear-gradient(top, $start-color 0%, $end-color 100%);
+    background: -ms-linear-gradient(top, $start-color 0%, $end-color 100%);
+    background: linear-gradient(to bottom, $start-color 0%, $end-color 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$start-color', endColorstr='$end-color',GradientType=0 );
+  } @else if $orientation == horizontal {
+    // horizontal
+    background: -moz-linear-gradient(left, $start-color 0%, $end-color 100%);
+    background: -webkit-gradient(
+      linear,
+      left top,
+      right top,
+      color-stop(0%, $start-color),
+      color-stop(100%, $end-color)
+    );
+    background: -webkit-linear-gradient(left, $start-color 0%, $end-color 100%);
+    background: -o-linear-gradient(left, $start-color 0%, $end-color 100%);
+    background: -ms-linear-gradient(left, $start-color 0%, $end-color 100%);
+    background: linear-gradient(to right, $start-color 0%, $end-color 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$start-color', endColorstr='$end-color',GradientType=1 );
+  } @else {
+    // radial
+    background: -moz-radial-gradient(
+      center,
+      ellipse cover,
+      $start-color 0%,
+      $end-color 100%
+    );
+    background: -webkit-gradient(
+      radial,
+      center center,
+      0px,
+      center center,
+      100%,
+      color-stop(0%, $start-color),
+      color-stop(100%, $end-color)
+    );
+    background: -webkit-radial-gradient(
+      center,
+      ellipse cover,
+      $start-color 0%,
+      $end-color 100%
+    );
+    background: -o-radial-gradient(
+      center,
+      ellipse cover,
+      $start-color 0%,
+      $end-color 100%
+    );
+    background: -ms-radial-gradient(
+      center,
+      ellipse cover,
+      $start-color 0%,
+      $end-color 100%
+    );
+    background: radial-gradient(
+      ellipse at center,
+      $start-color 0%,
+      $end-color 100%
+    );
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$start-color', endColorstr='$end-color',GradientType=1 );
+  }
+}
+
+// CSS Grid Layoutで複数の行を指定するmixin
+@mixin create-grid-column-span($start, $end) {
+  grid-column-start: $start;
+  grid-column-end: $end;
+  -ms-grid-column-span: $end - $start;
+}
+
+// CSS Grid Layoutで複数の列を指定するmixin
+@mixin create-grid-row-span($start, $end) {
+  grid-row-start: $start;
+  grid-row-end: $end;
+  -ms-grid-row-span: $end - $start;
+}
+
+//フォーカスリング周り
+@mixin focus-with-keyboard {
+  html[data-whatinput="keyboard"] &:focus {
+    @content;
+  }
+}
+
+@mixin focus-without-keyboard {
+  html[data-whatinput="initial"] &:focus,
+  html[data-whatinput="mouse"] &:focus,
+  html[data-whatinput="touch"] &:focus {
+    @content;
+  }
+}
+
+@mixin focus-clear {
+  outline: none;
+}
+
+@mixin focus-clear-without-keyboard {
+  @include focus-without-keyboard {
+    @include focus-clear;
+  }
+}
+
+

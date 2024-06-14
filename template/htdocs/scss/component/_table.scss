@@ -1,0 +1,105 @@
+@use "../global/" as *;
+table{
+	width: 100%;
+	margin: 2em auto;
+	border-top: 1px solid $main_color;
+	border-left: 1px solid $main_color;
+	h2 + &,
+	h3 + &,
+	h4 + &,
+	h4 + .swipe &  {
+		margin-top: 1.2rem;
+	}
+	&.block {
+		@include sp {
+			th, td {
+				display: block;
+			}
+		}
+	}
+	&.narrow {
+		th, td {
+			padding: 5px;
+		}
+	}
+	th,td{
+		line-height: 1.5;
+        @include sp {
+            line-height: 1.3;
+        }
+    }
+	thead{
+		background: $main_color;
+		tr{
+			th,td{
+				border-right: 1px solid $border_color;
+				border-bottom: 1px solid $border_color;
+				padding: 16px 10px;
+				text-align: center;
+				color: #fff;
+				@include sp {
+					padding: 10px 5px;
+				}
+            }
+            th {
+                font-weight: bold;
+            }
+		}
+	}
+	tfoot{
+		background: #d5e4ea;
+		tr{
+			th,td{
+				border-right: 1px solid $border_color;
+				border-bottom: 1px solid $border_color;
+				padding: 14px 10px;
+				text-align: center;
+				font-weight: bold;
+				@include sp {
+					padding: 10px 5px;
+				}
+			}
+		}
+	}
+	tbody{
+		background: #fff;
+		tr{
+			th{
+				text-align: center;
+				background-color: $purple;
+				font-weight: bold;
+			}
+			th,td{
+				border-right: 1px solid $main_color;
+				border-bottom: 1px solid $main_color;
+				padding: 14px 10px;
+				@include fontsize(15);
+				@include sp {
+					padding: 8px 5px;
+				}
+				& > *:first-child{
+					margin-top: 0;
+				}
+				& > *:last-child{
+					margin-bottom: 0;
+				}
+			}
+
+		}
+	}
+	caption{
+		font-weight: bold;
+		@include fontsize(17);
+		margin-bottom: 0.7em;
+	}
+
+	& + table,& + div.swipe{
+		margin-top: 3em;
+	}
+	+ p.note,
+	+ ul.notes{
+		margin-top: -1.2em;
+	}
+
+
+}

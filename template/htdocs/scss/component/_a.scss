@@ -1,0 +1,73 @@
+@use "../global/" as *;
+
+a{
+	color: $main_color;
+	@include icon-linker;
+    @include transition(color .4s);
+    position: relative;
+	&:hover{
+		color: $sub_color;
+		text-decoration: none;
+    }
+
+	&.tel-disable{
+		color: $text_color;
+		cursor: default;
+		text-decoration: none !important;
+		&:hover{
+			cursor: default;
+			color: $text_color;
+			text-decoration: none;
+		}
+    }
+    &.noIcon {
+        &:after {
+            display: none !important;
+        }
+    }
+}
+a[href^="tel:"] {
+	text-decoration: underline;
+}
+
+a[href^="http://"]:not(.btn),a[href^="https://"]:not(.btn) {
+	&:after {
+        content: url("/img/common/ico-blank.png");
+        display: inline-block;
+        margin-top: -5px;
+        padding-left: .5rem;
+        padding-right: 0.5em;
+    }
+}
+
+a[href $= ".pdf"] {
+    &:after {
+        content: url("/img/common/ico-pdf.png");
+        display: inline-block;
+        padding-left: .5rem;
+      }
+}
+
+a[href$=".xls"], a[href$=".xlsx"] {
+    &:after {
+        content: url("/img/common/ico-excel.png");
+        display: inline-block;
+        padding-left: .5rem;
+      }
+}
+
+a[href$=".doc"], a[href$=".docx"] {
+    &:after {
+        content: url("/img/common/ico-word.png");
+        display: inline-block;
+        padding-left: .5rem;
+      }
+}
+a[href$=".ppt"], a[href$=".pptx"] {
+    &:after {
+        content: url("/img/common/ico-ppt.png");
+        display: inline-block;
+        padding-left: .5rem;
+      }
+}
+

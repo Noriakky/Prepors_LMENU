@@ -1,0 +1,30 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<svg xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <font id="icon" horiz-adv-x="1571.7">
+    <font-face font-family="icon"
+      units-per-em="1571.7" ascent="1571.7"
+      descent="0" />
+    <missing-glyph horiz-adv-x="0" />
+    <glyph glyph-name="arw-down"
+      unicode="&#xEA01;"
+      horiz-adv-x="800" d="M400 176.24L0 519.1030000000001L68.012 598.451L400 313.947L731.989 598.451L800 519.1030000000001z" />
+    <glyph glyph-name="arw-up"
+      unicode="&#xEA02;"
+      horiz-adv-x="800" d="M731.989 196.2339999999999L400 480.788L68.012 196.2339999999999L0 275.628L400 618.546L800 275.628z" />
+    <glyph glyph-name="check"
+      unicode="&#xEA03;"
+      horiz-adv-x="1571.7" d="M319.2 940.4L243.4 857.7L727.9 299.3L1571.7 1311.5L1505.2 1382.4L727.9 742.8000000000001z" />
+    <glyph glyph-name="cross"
+      unicode="&#xEA04;"
+      horiz-adv-x="800" d="M795 711.723L711.721 795L400 483.28L88.279 795L5 711.723L316.721 400.001L5 88.281L88.279 5L400 316.722L711.721 5L795 88.281L483.279 400.001z" />
+    <glyph glyph-name="menu"
+      unicode="&#xEA05;"
+      horiz-adv-x="512" d="M192 256A64 64 0 0 1 320 256A64 64 0 0 1 192 256M192 64A64 64 0 0 1 320 64A64 64 0 0 1 192 64M192 448A64 64 0 0 1 320 448A64 64 0 0 1 192 448" />
+    <glyph glyph-name="more"
+      unicode="&#xEA06;"
+      horiz-adv-x="800" d="M799.5 412.4L412.4 412.4L412.4 799.5L386.6 799.5L386.6 412.4L-0.5 412.4L-0.5 386.6L386.6 386.6L386.6 -0.5L412.4 -0.5L412.4 386.6L799.5 386.6z" />
+  </font>
+</defs>
+</svg>

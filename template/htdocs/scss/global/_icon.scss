@@ -1,0 +1,71 @@
+@font-face {
+	font-family: "icon";
+	src: url('../fonts/icon.eot');
+	src: url('../fonts/icon.eot?#iefix') format('eot'),
+		url('../fonts/icon.woff') format('woff'),
+		url('../fonts/icon.ttf') format('truetype'),
+		url('../fonts/icon.svg#icon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+[class^="ico-"]:before, [class*=" ico-"]:before {
+	display: inline-block;
+	font-family: "icon";
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+.ico-lg {
+	font-size: 1.3333333333333333em;
+	line-height: 0.75em;
+	vertical-align: -15%;
+}
+.ico-2x { font-size: 2em; }
+.ico-3x { font-size: 3em; }
+.ico-4x { font-size: 4em; }
+.ico-5x { font-size: 5em; }
+.ico-fw {
+	width: 1.2857142857142858em;
+	text-align: center;
+}
+
+
+.ico-arw-down:before { content: "\EA01" } /**/
+.ico-arw-up:before { content: "\EA02" } /**/
+.ico-check:before { content: "\EA03" } /**/
+.ico-cross:before { content: "\EA04" } /**/
+.ico-menu:before { content: "\EA05" } /**/
+.ico-more:before { content: "\EA06" } /**/
+
+
+/**/
+[class^="af-ico-"]:after, [class*=" af-ico-"]:after {
+	display: inline-block;
+	font-family: "icon";
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+.ico-lg {
+					 font-size: 1.3333333333333333em;
+					 line-height: 0.75em;
+					 vertical-align: -15%;
+				 }
+.af-ico-2x { font-size: 2em; }
+.af-ico-3x { font-size: 3em; }
+.af-ico-4x { font-size: 4em; }
+.af-ico-5x { font-size: 5em; }
+.af-ico-fw {
+					 width: 1.2857142857142858em;
+					 text-align: center;
+				 }
+//.af-ico-arw-down:after { content: "\EA01" } /**/
+.af-ico-arw-up:after { content: "\EA02" } /**/
+.af-ico-check:after { content: "\EA03" } /**/
+.af-ico-cross:after { content: "\EA04" } /**/
+.af-ico-menu:after { content: "\EA05" } /**/
+.af-ico-more:after { content: "\EA06" } /**/

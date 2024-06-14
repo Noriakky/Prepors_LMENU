@@ -1,0 +1,401 @@
+@use "../global/" as *;
+.st-Header{
+	position: fixed;
+	left: 0;
+	top: 0;
+	height: 100vh;
+	background-color: $main_color;
+	overflow: hidden;
+
+	z-index: 1000;
+	width: 250px;
+	@include tablet {
+		overflow: visible;
+		width: 100%;
+		height: 80px;
+	}
+	@include sp {
+		height: 70px;
+	}
+	&_Inner{
+		overflow-y: auto;
+		overflow-x: hidden;
+		height: 100%;
+		width: 274px;
+		padding-right: 12px;
+		@include tablet {
+			overflow-y: visible;
+			height: 80px;
+			padding-right: 0;
+			width: 100%;
+		}
+		@include sp {
+			height: 70px;
+		}
+		&_Contents {
+			width: 250px;
+			margin: 0;
+			padding: 0;
+			@include tablet {
+				width: 100%;
+			}
+		}
+	}
+	&_Logo{
+		width: 100%;
+		height: 295px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		@include tablet {
+			flex: 0 0 182px;
+			max-width: 182px;
+			justify-content: start;
+			height: 80px;
+			padding-left: 15px;
+			picture {
+				width: 182px;
+				display: block;
+			}
+		}
+		@include sp {
+			height: 70px;
+			padding-left: 15px;
+			picture {
+				width: 182px;
+				display: block;
+			}
+		}
+	}
+}
+
+.st-Menu{
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	position: relative;
+	@include sp {
+		background-color: $darkBlue;
+		&-expanded {
+			//overflow-y: scroll;
+		}
+	}
+	&_Header {
+		display: none;
+		position: relative;
+		@include tablet{
+			display: block;
+		}
+		&_Btn{
+			position: absolute;
+			top: -80px;
+			right: 0;
+			background: $darkBlue;
+			display: flex;
+			align-items: center;
+			justify-items: center;
+			text-indent: 100%;
+			white-space: nowrap;
+			overflow: hidden;
+			width: 80px;
+			height: 80px;
+			@include sp {
+				top: -70px;
+				width: 70px;
+				height: 70px;
+			}
+
+			&:focus {
+				border: none;
+			}
+			dl{
+				width: 30px;
+				height: 30px;
+				color: #fff;
+				margin: 0 auto;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				@include transform(translate(-50%, -50%));
+				dt{
+					width: 100%;
+					@include fontsize(10);
+					position: absolute;
+					bottom: -5px;
+				}
+				dd{
+					position: absolute;
+					top: 5px;
+					span{
+						@include transition(all .2s);
+						display: inline-block;
+						position: absolute;
+						left: 0;
+						width: 30px;
+						height: 2px;
+						background-color: #fff;
+						&:nth-of-type(1){
+							top: 0px;
+						}
+						&:nth-of-type(2){
+							top: 10px;
+						}
+						&:nth-of-type(3){
+							top: 20px;
+						}
+					}
+					&.active{
+						span{
+							&:nth-of-type(1){
+								@include transform(translateY(7px) rotate(-45deg));
+							}
+							&:nth-of-type(2){
+								opacity: 0;
+							}
+							&:nth-of-type(3){
+								@include transform(translateY(-14px) rotate(45deg));
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	&_Body{
+		@include tablet {
+			visibility: hidden;
+			height: 0;
+			@include transition(height .4s);
+			&.isActive {
+				visibility: visible;
+				display: flex;
+				justify-content: flex-end;
+				background: rgba(0, 0, 0, .5);
+				height: calc(100Vh - 80px);
+				overflow-y: scroll;
+				@include sp {
+					height: calc(100Vh - 70px);
+				}
+			}
+			&_Inner {
+				flex: 0 0 50%;
+				max-width: 50%;
+				background-color: $darkBlue;
+				@include sp {
+					flex: 0 0 100%;
+					max-width: 100%;
+				}
+			}
+		}
+
+	}
+}
+.st-Global{
+	width: 240px;
+	margin: 0 auto;
+	@include tablet {
+		width: 100%;
+	}
+	&_Item{
+		margin: 0;
+		position: relative;
+		border-bottom: 1px solid #4170a3;
+		&:first-child {
+			border-top: 1px solid #4170a3;
+		}
+		&_Wrapper {
+			display: flex;
+		}
+		&_Handler{
+			position: relative;
+		}
+		&.active {
+			a.st-Global_Item_Link {
+				background-color: $darkBlue;
+			}
+		}
+		&_Link{
+			color: #fff;
+			display: flex;
+			text-decoration: none;
+			min-height: 50px;
+			align-items: center;
+			padding: .5rem .75rem;
+			background-color: $main_color;
+			justify-content: space-between;
+			@include transition(background-color .4s);
+			line-height: 1;
+			width: 100%;
+			&:hover {
+				background-color: $darkBlue;
+				color: #fff;
+			}
+		}
+		&_toggle {
+			//display: none;
+			@include tablet {
+				display: block;
+			}
+			position: absolute;
+			top: 25px;
+			right: 10px;
+			background-color: $l_blue;
+			padding: .25rem;
+			width: 40px;
+			height: 40px;
+			text-decoration: none;
+			z-index: 10;
+			@include fontsize(14);
+			@include transform(translate(0,-50%));
+			&:before {
+				content: "\e800";
+				@include iconfont;
+				color: #fff;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				@include transform(translate(-50%, -50%));
+			}
+			&.isActive {
+				background-color: $darkBlue;
+				&:before {
+					content: "\e801";
+				}
+			}
+		}
+	}
+}
+.st-Local {
+	display: none;
+	background-color: $darkBlue;
+	@include tablet {
+		display: none;
+	}
+	@include sp {
+		display: none;
+	}
+	&_Item {
+		&_Link {
+			color: #fff;
+			text-decoration: none;
+			@include fontsize(14);
+			padding: .5rem 1rem;
+			display: block;
+			@include transition(background-color .4s);
+			&:hover {
+				color: #fff;
+				background-color: $l_blue;
+			}
+			&.active {
+				color: #fff;
+				background-color: $l_blue;
+			}
+		}
+	}
+}
+.st-Assist{
+	width: 220px;
+	margin: 1.5rem auto;
+	@include sp {
+		width: 95%;
+		margin: .75rem auto;
+	}
+	&_List {
+		padding: 0 15px;
+		@include sp {
+			display: flex;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			margin-bottom: 1rem;
+		}
+		&_Item {
+			@include sp {
+				flex: 0 0 48%;
+				max-width: 48%;
+			}
+			&_Link {
+				@include fontsize(14);
+				color: #fff;
+				text-decoration: none;
+				position: relative;
+				@include transition(opacity .4s);
+				&:hover {
+					color: #fff;
+					opacity: .6;
+				}
+				&:before {
+					@include iconfont;
+					content: "\f105";
+					padding-right: .7rem;
+				}
+			}
+		}
+	}
+	&_Search {
+		width: 220px;
+		margin: 0 auto;
+		background-color: #fff;
+		padding: 1px;
+		height: 30px;
+		form {
+			display: flex;
+			justify-content: space-between;
+		}
+		&_Text {
+			border: none;
+			height: 30px;
+			flex: 1 1 auto;
+			padding: 0.25rem;
+			outline: none;
+			background-color: transparent !important;
+		}
+		&_Btn {
+			position: relative;
+			width: 38px;
+			height: 28px;
+			background-color: $main_color;
+			border: none;
+			display: block;
+			cursor: pointer;
+			&:hover {
+				background-color: $darkBlue;
+			}
+			&:before {
+				content: "\e807";
+				color: #fff;
+				@include iconfont;
+				@include fontsize(18)
+			}
+		}
+	}
+	&_SubLink {
+		width: 220px;
+		margin: 1rem auto;
+		padding-bottom: 3rem;
+		&_List {
+			display: flex;
+			justify-content: space-between;
+			&_Item {
+				flex: 0 0 48%;
+				max-width: 48%;
+				&_Link {
+					background: $darkBlue;
+					border: 1px solid #7390b1;
+					color: #fff;
+					text-decoration: none;
+					width: 100%;
+					display: flex;
+					justify-content: center;
+					padding: .25rem 0;
+					@include fontsize(14);
+					@include transition(opacity .4s);
+					&:hover {
+						color: #fff;
+						opacity: .6;
+					}
+				}
+			}
+		}
+	}
+}
+

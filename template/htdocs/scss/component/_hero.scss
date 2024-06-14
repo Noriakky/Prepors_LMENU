@@ -1,0 +1,49 @@
+@use "../global/" as *;
+.mc-hero {
+    width: 100%;
+    height: 280px;
+    @include sp {
+        height: 150px;
+    }
+    overflow: hidden;
+    &.education {
+        background: url("/img/education/hero.jpg") center bottom no-repeat;
+        background-size: cover;
+    }
+    &.outline {
+        background: url("/img/outline/hero.jpg") right bottom no-repeat;
+        background-size: cover;
+    }
+    &.courses {
+        background: url("/img/courses/hero.jpg") right bottom no-repeat;
+        background-size: cover;
+    }
+    &.admission {
+        background: url("/img/admission/hero.jpg") right bottom no-repeat;
+        background-size: cover;
+    }
+    &.life-support {
+        background: url("/img/life-support/hero.jpg") right bottom no-repeat;
+        background-size: cover;
+    }
+    &.cooperation {
+        background: url("/img/cooperation/hero.jpg") center bottom no-repeat;
+        background-size: cover;
+    }
+    &.career {
+        background: url("/img/career/hero.jpg") right bottom no-repeat;
+        background-size: cover;
+    }
+    &.syllabus {
+        background: url("/img/syllabus/hero.jpg") right bottom no-repeat;
+        background-size: cover;
+    }
+    &.nanopla {
+        background: url("/img/nanopla/hero.jpg") right bottom no-repeat;
+        background-size: cover;
+    }
+    &.access, &.sitemap, &.information, &.inquiry {
+        background: url("/img/common/hero.jpg") center bottom no-repeat;
+        background-size: cover;
+    }
+}

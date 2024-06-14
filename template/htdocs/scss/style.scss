@@ -1,0 +1,1619 @@
+@charset "utf-8";
+@use "global" as *;
+@use "component" as *;
+@use "layout" as *;
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,500,700|Noto+Serif+JP:400,500,700+Zen+Kaku+Gothic+New:wght@400;500;700&display=swap');
+
+* {
+	box-sizing: border-box;
+	min-width: 0;
+	min-height: 0;
+}
+
+em{
+  color: $main_color;
+  font-weight: $mid;
+}
+
+body{
+	font-family: "Noto Sans Japanese", "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "Helvetica Neue" , Helvetica , Arial , Verdana , Roboto ,  "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
+	width:100%;
+	*font-size:small;
+	*font:x-small;
+	-webkit-text-size-adjust: 100%;
+	line-height: 1.65;
+	font-size: 16px;
+	font-size: 100%;
+	position: relative;
+	color: $text_color;
+	@include sp {
+		min-width: 320px;
+		padding-bottom: 0;
+	}
+}
+@media print {
+  body {
+	-webkit-print-color-adjust: exact;
+    width: 1100px;
+    transform: scale(1);
+    -moz-transform: scale(1);
+    -webkit-transform: scale(1);
+    transform-origin: 0 0;
+  }
+}
+@media all and (-ms-high-contrast:none) {
+	body {
+		font-family: "Noto Sans Japanese", "メイリオ",Meiryo,"游ゴシック",YuGothic,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","ＭＳ Ｐゴシック","MS PGothic",sans-serif;
+	}
+}
+
+.pcOnly{
+	display: block;
+	@include sp {
+		display: none !important;
+	}
+	@include tablet {
+		display: none !important;
+	}
+}
+.spOnly{
+	display: none;
+	@include tablet {
+		display: none !important;
+	}
+	@include sp {
+		display: block !important;
+	}
+}
+ul,ol{ list-style-type:none; }
+img {
+	width: auto;
+	max-width: 100%;
+	min-width: 0;
+}
+figure {
+	figcaption {
+		margin-top: .2rem;
+	}
+}
+
+.uLine { text-decoration: underline; }
+.txtR{ text-align: right !important; }
+.txtC{ text-align: center !important; }
+.txtL{ text-align: left !important; }
+strong,	.strong{ font-weight: $mid; }
+.att { color: $red; }
+em { font-weight: bold; }
+.indent1 {
+	text-indent: -1rem;
+	padding-left: 1rem;
+}
+
+.indent2 {
+	text-indent: -2em;
+	padding-left: 2em;
+	}
+.indent3 {
+	text-indent: -3em;
+	padding-left: 3em;
+}
+
+.big { @include fontsize(18); }
+.fontXL { @include fontsize(22); }
+.breakAll { word-break: break-all; }
+.btn {
+	background-color: $darkBlue;
+	color: #fff;
+	@include fontsize(18);
+	text-decoration: none;
+	min-width: 220px;
+	text-align: center;
+	display: inline-block;
+	padding: .25rem;
+	@include transition(all .4s);
+	&:hover {
+		background-color: $l_blue;
+		color: #fff;
+	}
+}
+.st-Contents {
+	padding: 0 0 0 250px;
+	background: url("/img/common/st-Contents_bg.png") bottom right no-repeat;
+	@include tablet {
+		padding: 80px 0 0 0;
+	}
+	@include sp {
+		padding: 70px 0 0 0;
+	}
+}
+.st-Topicpath {
+	background-color: #c9c9c9;
+	height: 60px;
+	display: flex;
+	align-items: center;
+	@include sp {
+		height: 40px;
+		max-width: 100%;
+		overflow-x: auto;
+		white-space: nowrap;
+	}
+	ol {
+		max-width: $cont_max_width;
+		width: 100%;
+		margin: 0 auto;
+		padding: 0 30px;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		@include tablet {
+			max-width: 95%;
+			width: 95%;
+			overflow-y: hidden;
+		}
+		@include sp {
+			padding: 0;
+		}
+		li {
+			float: left;
+			@include fontsize(13);
+			position: relative;
+			padding-left: .5rem;
+			@include sp {
+				float: none;
+				display: inline;
+			}
+			&:first-child {
+				padding-left: 0;
+			}
+			&:after {
+				@include iconfont;
+				content: "\f105";
+				padding-left: .5rem;
+			}
+			&:last-child {
+				&:after {
+					display: none;
+				}
+			}
+			a {
+				position: relative;
+			}
+		}
+	}
+}
+.st-Main {
+	width: 100%;
+	max-width: $cont_max_width;
+	margin: 0 auto 3rem;
+	padding: 0;
+	position: relative;
+	top: -70px;
+	margin-bottom: -40px;
+	@include tablet {
+		max-width: 95%;
+		width: 95%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	> h1 {
+		width: 100%;
+		color: $main_color;
+		@include fontsize(30);
+		text-align: center;
+		font-weight: $mid;
+		padding: 2.5rem 30px;
+		background-color: rgba(255, 255, 255, 0.9);
+		+ section {
+			margin-top: 0;
+		}
+	}
+	h2 {
+		margin-top: 3rem;
+		background-color: $main_color;
+		color: #fff;
+		@include fontsize(24);
+		font-weight: $mid;
+		position: relative;
+		padding: 1.5rem 1.5rem 1.5rem 2.0rem;
+		&:before {
+			content: "";
+			display: inline-block;
+			width: 4px;
+			height: 80%;
+			position: absolute;
+			top: 0;
+			left: 15px;
+			background-color: #fff;
+		}
+	}
+	h3 {
+		@include fontsize(20);
+		border-bottom: 3px solid #eeeeee;
+		position: relative;
+		margin-top: 2rem;
+		padding: 0 15px 5px;
+		&:after {
+			content: "";
+			height: 3px;
+			width: 27%;
+			background-color: $sub_color;
+			display: inline-block;
+			position: absolute;
+			left: 0;
+			bottom: -3px;
+
+		}
+	}
+
+	h4 {
+		margin-top: 2rem;
+		background-color: #eeeeee;
+		padding: .5rem .5rem .5rem 2rem;
+		position: relative;
+		font-weight: $bold;
+		&:before {
+			position: absolute;
+			top: 16px;
+			left: 16px;
+			content: "";
+			width: 10px;
+			height: 10px;
+			@include radius(5px);
+			display: block;
+			background-color: $sub_color;
+		}
+
+	}
+	> section,
+	> div {
+		padding: 0 30px;
+		@include tablet {
+			padding: 0 15px;
+		}
+		figure {
+			margin-top: 2rem;
+		}
+	}
+	> section,
+	> section > div,
+	> div {
+		margin-top: 2rem;
+		> *:first-child {
+			margin-top: 0;
+		}
+	}
+	p {
+		margin-top: 1.5rem;
+		padding: 0 15px;
+		&.lead {
+			@include fontsize(20);
+		}
+	}
+	dl {
+		margin-top: 1rem;
+		width: 100%;
+		padding: 0 15px;
+		dt {
+			color: $main_color;
+			@include fontsize(17);
+			font-weight: $mid;
+			position: relative;
+			padding-left: 1.3rem;
+			margin-top: 1rem;
+			&:before {
+				content: "\f1db";
+				@include iconfont;
+				position: absolute;
+				top: 6px;
+				left: 0;
+			}
+		}
+		dd {
+			margin-top: .5rem;
+			padding-left: 1.3rem;
+		}
+	}
+	ol:not([class]){
+		padding: 0 15px;
+		margin-top: 1rem;
+		counter-reset: num;
+		> li{
+			position: relative;
+			padding: 0 0 0 1.5em;
+			&:before{
+				font-family: 'Arial','Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', ‘游ゴシック体’, ‘Yu Gothic’, ‘YuGothic’ , Meiryo, メイリオ, sans-serif;
+				counter-increment: num;
+				content: counter(num) ".";
+				position: absolute;
+				top: 2px;
+				left: 0px;
+				font-weight: $bold;
+			}
+			ol{
+				> li{
+					padding: 0 0 0 27px;
+					&:before{
+						left: 2px;
+						font-size: 13px;
+						content: counters(num, "-") ".";
+					}
+				}
+				&.with_Number {
+					> li {
+						margin: 10px 0;
+						padding: 0;
+						text-indent: -1rem;
+						padding-left: 1rem;
+						&:before {
+							display: none;
+						}
+					}
+
+				}
+			}
+			> ul{
+				counter-reset: num;
+				margin: 5px auto;
+				li{
+					&:before{
+						content: "";
+						display: inline-block;
+						width: 6px;
+						height: 6px;
+						position: absolute;
+						left: 0;
+						top: 10px;
+						background: #c2cfe4;
+						@include radius(6px);
+					}
+				}
+			}
+		}
+	}
+	ul {
+		margin: 1rem 0 2rem;
+		&:not([class]) {
+			padding: 0 15px;
+			li{
+				position: relative;
+				padding-left: .8rem;
+				margin-bottom: .25rem;
+				&:before {
+					background-color: $text_color;
+					content: "";
+					display: inline-block;
+					width: 6px;
+					height: 6px;
+					@include radius(3px);
+					position: absolute;
+					top: 10px;
+					left: 0;
+					line-height: 1;
+				}
+				ul {
+					margin: 0;
+				}
+			}
+		}
+		&.linkStyle {
+			padding: 0 15px;
+			li{
+				margin-bottom: .5rem;
+				a {
+					position: relative;
+					padding-left: 1.2rem;
+					display: inline-block;
+					&:before {
+						@include iconfont;
+						overflow: hidden;
+						display: inline-block;
+						content: "\e806";
+						@include fontsize(12);
+						position: absolute;
+						text-decoration: none;
+						top: 14px;
+						left: 0;
+						@include transform(translate(0, -50%));
+						width: 15px;
+						height: 15px;
+						line-height: 15px;
+						background-color: $main_color;
+						color: #fff;
+					}
+				}
+			}
+
+		}
+		&.indent_1 {
+			text-indent: -1rem;
+			padding-left: 1rem;
+		}
+		&.graffiti {
+			display: flex;
+			flex-wrap: wrap;
+			li {
+				flex: 0 0 25%;
+				max-width: 25%;
+				@include sp {
+					flex: 0 0 50%;
+					max-width: 50%;
+				}
+			}
+		}
+	}
+}
+
+.figure-C-2 {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding: 0 15px;
+	> div {
+		flex: 0 0 48%;
+		max-width: 48%;
+		margin-top: 2.5rem;
+		&:nth-child(1),
+		&:nth-child(2){
+			margin-top: 0;
+		}
+		&:after {
+			content: "";
+			flex: 0 0 48%;
+			max-width: 48%;
+			display: block;
+		}
+		@include sp {
+			flex: 0 0 100%;
+			max-width: 100%;
+			&:nth-child(2) {
+				margin-top: 2.5rem;
+			}
+		}
+		figure {
+			text-align: center;
+			margin-top: 0;
+		}
+	}
+}
+
+.figure-C-3 {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding: 0 15px;
+	&:after {
+		content: "";
+		flex: 0 0 32%;
+		max-width: 32%;
+		display: block;
+	}
+	> div {
+		flex: 0 0 32%;
+		max-width: 32%;
+		margin-top: 2.5rem;
+		&:nth-child(1),
+		&:nth-child(2),
+		&:nth-child(3){
+			margin-top: 0;
+		}
+		@include sp {
+			flex: 0 0 100%;
+			max-width: 100%;
+			&:nth-child(2),
+			&:nth-child(3) {
+				margin-top: 2.5rem;
+			}
+		}
+		figure {
+			text-align: center;
+			margin-top: 0;
+		}
+	}
+}
+
+.figure-C-4 {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding: 0 15px;
+	&:after {
+		content: "";
+		width: 24%;
+		display: block;
+	}
+	&:before {
+		content: "";
+		width: 24%;
+		display: block;
+		order:1;
+	}
+	> div {
+		flex: 0 0 24%;
+		max-width: 24%;
+		margin-top: 2.5rem;
+		&:nth-child(1),
+		&:nth-child(2),
+		&:nth-child(3),
+		&:nth-child(4) {
+			margin-top: 0;
+		}
+
+		figure {
+			text-align: center;
+			margin-top: 0;
+			img{
+				width: 100%;
+			}
+		}
+		@include tablet {
+			flex: 0 0 32%;
+			max-width: 32%;
+			&:nth-child(4) {
+				margin-top: 2.5rem;
+			}
+		}
+		@include sp {
+			flex: 0 0 100%;
+			max-width: 100%;
+			&:nth-child(2),
+			&:nth-child(3) {
+				margin-top: 2.5rem;
+			}
+		}
+	}
+}
+
+.figure-C-2, .figure-C-3, .figure-C-4 {
+	> div {
+		div {
+			margin-top: .5rem;
+			> p {
+				margin: 0;
+				padding: 0;
+			}
+		}
+	}
+}
+
+.mc-ListBtn {
+	width: 100%;
+	margin: 0 auto 1.5rem;
+	&_List {
+		display: flex;
+		width: 100%;
+		flex-wrap: wrap;
+		&.two_Line {
+			li {
+				flex: 0 0 49%;
+				max-width: 49%;
+			}
+		}
+		li{
+			flex: 0 0 24%;
+			max-width: 24%;
+			margin-right: 1%;
+			margin-bottom: .5rem;
+			a {
+				border: 1px solid $border-color;
+				display: flex;
+				align-items: center;
+				position: relative;
+				@include fontsize(14);
+				text-decoration: none;
+				background-color: #fff;
+				padding: .5rem 20px .5rem .5rem;
+				height: 100%;
+				&:hover {
+					background-color: $main_color;
+					color: #fff;
+				}
+				&:before {
+					@include iconfont;
+					content: "\e804";
+					display: inline-block;
+					position: absolute;
+					top: 50%;
+					@include transform(translate(0, -50%));
+					right: 10px;
+				}
+			}
+		}
+	}
+}
+
+.mc-AnchorLink {
+	width: 100%;
+	margin: 0 auto 1.5rem;
+	&_List {
+		display: flex;
+		width: 100%;
+		flex-wrap: wrap;
+		&.two_Line {
+			li {
+				flex: 0 0 49%;
+				max-width: 49%;
+			}
+		}
+		li {
+			flex: 0 0 24%;
+			max-width: 24%;
+			margin-right: 1%;
+			margin-bottom: .5rem;
+			@include sp {
+				flex: 0 0 49%;
+				max-width: 49%;
+				margin-right: 2%;
+				&:nth-child(2n) {
+					margin-right: 0;
+				}
+			}
+		}
+		a {
+			border: 1px solid $border-color;
+			display: flex;
+			align-items: center;
+			position: relative;
+			@include fontsize(14);
+			text-decoration: none;
+			background-color: #fff;
+			padding: .5rem 20px .5rem .5rem;
+			height: 100%;
+			&:hover {
+				background-color: $main_color;
+				color: #fff;
+			}
+			&:after {
+				@include iconfont;
+				content: "\e804";
+				display: inline-block;
+				position: absolute;
+				top: 50%;
+				@include transform(translate(0, -50%));
+				right: 10px;
+			}
+		}
+	}
+}
+
+.labList {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	padding: 0 15px;
+	@include sp {
+		display: block;
+	}
+	&:after {
+		flex: 0 0 48%;
+		max-width: 48%;
+		display: block;
+	}
+	&_Item {
+		margin-bottom: 2rem;
+		flex: 0 0 48%;
+		max-width: 48%;
+		border: 1px solid $border-color;
+		padding: 10px;
+		@include sp {
+			max-width: 100%;
+		}
+		h3 {
+			margin-top: 0;
+			margin-bottom: 1rem;
+		}
+		&_Cnt {
+			display: flex;
+			@include sp {
+				flex-direction: column;
+			}
+			figure {
+				flex: 0 0 40%;
+				max-width: 40%;
+				@include sp {
+					text-align: center;
+					flex: 0 0 100%;
+					max-width: 100%;
+					margin-bottom: 1rem;
+				}
+			}
+			p {
+				margin-top: 0;
+				@include sp {
+					order: 1;
+				}
+			}
+		}
+		.program {
+			display: flex;
+			flex-wrap: wrap;
+			&_Item {
+				display: inline-block;
+				color: #fff;
+				padding: .25rem .5rem;
+				margin-right: .5rem;
+				margin-bottom: 1rem;
+				&.ms { background-color: $ms; }
+				&.is { background-color: $is; }
+				&.bn { background-color: $bn; }
+				&.dt { background-color: $dt; }
+			}
+		}
+	}
+}
+
+.imgL,.imgR{
+	margin:1.5em 0;
+	@include clearfix;
+	h2 + &,
+	h3 + &,
+	h4 + &,
+	h5 + &,
+	h5 + & p {
+		margin-top: .5rem;
+	}
+	figure{
+		max-width:40%;
+		@include sp {
+			max-width: 100%;
+			margin: 1rem auto;
+			text-align: center;
+		}
+	}
+}
+.imgR {
+	figure{
+		float:right;
+		margin: 0.5rem 15px 1rem;
+		@include sp {
+			float: none;
+			margin: 1rem auto;
+		}
+	}
+}
+.imgL {
+	figure{
+		float:left;
+		margin:0.5em 15px 1em;
+		@include sp {
+			float: none;
+			margin: 1rem auto;
+		}
+	}
+}
+
+div {
+	&.swipe{
+		@include sp {
+			overflow-x: scroll;
+			width: 100%;
+			position: relative;
+			table{
+				width: 900px;
+			}
+		}
+		.swipe-icon{
+			position: absolute;
+			top: 120px;
+			left: 50%;
+			margin-left: -75px;
+			margin-top: -75px;
+			width: 150px;
+			height: 150px;
+			background: #333;
+			text-align: center;
+			@include opacity(0.3);
+			img{
+				width: 91px;
+				padding-top: 16px;
+			}
+		}
+	}
+	&.columnBox2{
+		div{
+			width: 48%;
+			margin: 0 4% 15px 0;
+			&:nth-child(2n){
+				margin: 0;
+			}
+		}
+
+		figure{
+			text-align: center;
+		}
+
+	}
+	&.columnBox3{
+		div{
+			width: 32%;
+			margin: 0 2% 15px 0;
+			&:nth-child(3n){
+				margin: 0;
+			}
+			figure{
+				text-align: center;
+			}
+		}
+	}
+	&.columnBox4{
+		div{
+			width: 23.5%;
+			margin: 0 2% 15px 0;
+			&:nth-child(4n){
+				margin: 0;
+			}
+		}
+	}
+	&.columnBox2,
+	&.columnBox3,
+	&.columnBox4{
+		margin: 15px 0 20px;
+		@include clearfix;
+		div{
+			float: left;
+		}
+		@include sp{
+			div{
+				float: none;
+				width: 100%;
+				margin: 0 0 15px !important;
+				figure{
+					text-align: center;
+				}
+			}
+		}
+
+	}
+	&.box {
+		border: 1px dotted $main_color;
+		padding: .5rem 1rem;
+		&.blue {
+			border: 1px solid $main_color;
+			background-color: #eef1f6;
+			& *:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+}
+
+.st-Links {
+	max-width: $cont_max_width;
+	min-width: $cont_min_width;
+	padding: 0 30px;
+	margin: 0 auto 2rem;
+	background-color: #fff;
+	@include sp {
+		max-width: 100%;
+		min-width: 100%;
+		padding: 0 15px;
+	}
+	&_Inner {
+		display: flex;
+		padding: 2rem 2.5rem;
+		justify-content: space-between;
+		@include sp {
+			display: block;
+		}
+		@include sp {
+			padding: 1rem 0;
+		}
+	}
+	&_Item {
+		&_Title {
+			font-weight: bold;
+			color: $text_color;
+			text-decoration: none;
+			position: relative;
+			padding-left: 25px;
+			display: block;
+			@include fontsize(16);
+			margin-bottom: .5rem;
+			&:before{
+				@include iconfont;
+				display: inline-block;
+				content: "\e806";
+				@include fontsize(12);
+				position: absolute;
+				text-decoration: none;
+				top: 5px;
+				left: 0;
+				width: 18px;
+				height: 18px;
+				line-height: 18px;
+				background-color: $sub_color;
+				color: #fff;
+				@include radius(50%);
+			}
+		}
+		&_List {
+			margin-bottom: 2rem;
+			li {
+				margin-bottom: .25rem;
+				a {
+					@include fontsize(13);
+					text-decoration: underline;
+					position: relative;
+					padding-left: 25px;
+					display: block;
+					color: $text_color;
+					&:hover {
+						color: $sub_color;
+						text-decoration: none;
+					}
+					&:before {
+						content: "";
+						height: 2px;
+						background-color: $sub_color;
+						width: 10px;
+						display: inline-block;
+						position: absolute;
+						top: 10px;
+						left: 5px;
+					}
+				}
+			}
+		}
+	}
+	&_Titles {
+		li {
+			margin-bottom:1rem;
+			a {
+				font-weight: bold;
+				color: $text_color;
+				text-decoration: none;
+				position: relative;
+				padding-left: 25px;
+				display: block;
+				@include fontsize(16);
+				&:before{
+					@include iconfont;
+					display: inline-block;
+					content: "\e806";
+					@include fontsize(12);
+					position: absolute;
+					text-decoration: none;
+					top: 5px;
+					left: 0;
+					width: 18px;
+					height: 18px;
+					line-height: 18px;
+					background-color: $sub_color;
+					color: #fff;
+					@include radius(50%);
+				}
+			}
+		}
+	}
+}
+
+.sm-Index {
+	h2 {
+		padding: .5rem .5rem .5rem 3rem;
+		&:before {
+			display: none;;
+		}
+		&:after {
+			@include iconfont;
+			content: "\e809";
+			position: absolute;
+			top: 15px;
+			left: 15px;
+		}
+		a {
+			display: inline-block;
+			color: #fff;
+			text-decoration: none;
+			@include transition(opacity .4s);
+			&:hover {
+				opacity: .7;
+			}
+		}
+	}
+}
+
+.mc-CatIndex {
+	&_List {
+		display: flex;
+		flex-wrap: wrap;
+		&_Item {
+			flex: 0 0 32%;
+			max-width: 32%;
+			margin-right: 2%;
+			margin-bottom: 1.5rem;
+			&:nth-child(3n) {
+				margin-right: 0;
+			}
+			@include spSmall {
+				flex: 0 0 48%;
+				max-width: 48%;
+				margin-right: 2%;
+				&:nth-child(3n) {
+					margin-right: auto;
+				}
+				&:nth-child(2n) {
+					margin-right: 0;
+				}
+			}
+			a {
+				text-decoration: none;
+				background-color: #fff;
+				display: block;
+				padding-bottom: .5rem;
+				@include transition(background-color .4s);
+				&:hover{
+					background-color: $main_color;
+					figure {
+						background-color: transparent;
+					}
+					div {
+						color: #fff;
+						&:before {
+							background-color: #fff;
+							color: $sub_color;
+						}
+					}
+				}
+			}
+		}
+		&_Cnt {
+			figure {
+				background-color: $gray;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				padding: 1rem;
+				margin-bottom: .25rem;
+				@include transition(background-color .4s);
+				@include sp {
+					padding: .5rem;
+				}
+			}
+			div {
+				@include fontsize(15);
+				color: $text_color;
+				padding-left: 32px;
+				position: relative;
+				@include transition(color .4s);
+				line-height: 1.2;
+				&:before {
+					@include iconfont;
+					overflow: hidden;
+					display: inline-block;
+					content: "\e806";
+					@include fontsize(12);
+					position: absolute;
+					text-decoration: none;
+					text-align: center;
+					top: 1px;
+					left: 7px;
+					width: 18px;
+					height: 18px;
+					line-height: 18px;
+					background-color: $sub_color;
+					color: #fff;
+					@include radius(50%);
+					@include transition(all .4s);
+				}
+			}
+		}
+	}
+}
+
+.mc-Index {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 5px;
+	margin-top: 2rem;
+	background-color: #f3f3f3;
+	li {
+		flex: 0 0 33%;
+		max-width: 33%;
+		padding: 5px;
+		@include sp {
+			flex: 0 1 50%;
+			max-width: 50%;
+		}
+		a {
+			position: relative;
+			background-color: #fff;
+			display: flex;
+			height: 100%;
+			align-items: center;
+			color: $text_color;
+			text-decoration: none;
+			border-top: 2px solid $main_color;
+			padding: 1.2rem 10px;
+			@include transition(all .4s);
+			&:hover {
+				border-top: 2px solid $sub_color;
+				background-color: $sub_l_color;
+			}
+			&:after {
+				@include iconfont;
+				content: "\e808";
+				display: inline-block;
+				color: $sub_color;
+				position: absolute;
+				bottom: 0;
+				right: 10px;
+				@include fontsize(30);
+			}
+		}
+		.nolink {
+			position: relative;
+			background-color: #fff;
+			display: flex;
+			height: 100%;
+			align-items: center;
+			text-decoration: none;
+			border: 1px solid $border_color;
+			padding: 0.75rem 10px;
+		}
+	}
+}
+
+
+
+
+.topics_Content {
+	h2 {
+		&.date {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			@include sp {
+				display: block;
+			}
+			span {
+				font-weight: normal;
+				@include fontsize(15);
+				@include sp {
+					display: block;
+				}
+			}
+		}
+	}
+	.withImg {
+		img {
+			float: right;
+			margin-left: 15px;
+			margin-bottom: 15px;
+			max-width: 30%;
+		}
+	}
+}
+
+.companyList {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding: 0 10px;
+	&:after {
+		content: "";
+		width: 31%;
+		display: block;
+		@include sp {
+			width: 48%;
+		}
+	}
+
+	li {
+		flex-basis: 31%;
+		max-width: 31%;
+		display: flex;
+		justify-content: space-between;
+		border-bottom: 1px solid $border_color;
+		padding-bottom: .5rem;
+		margin-bottom: 1rem;
+		@include fontsize(14);
+		@include sp {
+			flex-basis: 48%;
+			max-width: 48%;
+		}
+		.num {
+			flex: 0 0 15%;
+			max-width: 15%;
+			padding-left: 1rem;
+		}
+	}
+}
+
+ul.state {
+	display: flex;
+	justify-content: space-between;
+	li {
+		flex: 0 0 30%;
+		max-width: 100%;
+		text-align: center;
+		border-bottom: 1px solid $main_color;
+		padding-bottom: 1rem;
+		&.active {
+			border-bottom: 3px solid $sub_color;
+			color: $sub_color;
+		}
+	}
+}
+
+.gsc-above-wrapper-area-container {
+	border: none;
+	margin: 0;
+	th, td {
+		border: none;
+		padding: 0;
+	}
+}
+.gsc-resultsHeader {
+	display: none;
+}
+
+.gMap {
+	width: 90%;;
+	margin: 1rem auto;
+	iframe {
+		width: 100%;
+		height: 500px;
+		@include sp {
+			height: 300px;
+		}
+	}
+}
+
+.contact {
+	input {
+		&.text {
+			@include radius(4px);
+			border: 1px solid $border-color;
+			padding-left: .3rem;
+			padding-right: .3rem;
+			height: 34px;
+			line-height: 34px;
+			width: 100%;
+		}
+	}
+
+	textarea {
+		width: 100%;
+		padding: .3rem;
+		@include radius(4px);
+		border: 1px solid $border-color;
+		height: 200px;
+	}
+	.error {
+		textarea  {
+			background-color: #fef4f4;
+
+		}
+		input {
+			&.text {
+				background-color: #fef4f4;
+			}
+		}
+	}
+	&_Inq {
+		th {
+			@include spSmall {
+				display: block;
+			}
+			> div{
+				display: flex;
+				justify-content: space-between;
+				.required {
+					background-color: $sub_color;
+					color: #fff;
+					font-weight: normal;
+					@include fontsize(14);
+					padding: 0 .5rem;
+				}
+			}
+		}
+		td {
+			@include spSmall {
+				display: block;
+			}
+
+			.checkText {
+				display: block;
+				margin-top: .25rem;
+				@include fontsize(14);
+				color: $red;
+			}
+		}
+	}
+	.btnArea {
+		display: flex;
+		justify-content: center;
+		button {
+			color: #fff;
+			background-color: $darkBlue;
+			@include fontsize(16);
+			padding: 1rem 1.5rem;
+			min-width: 200px;
+			@include transition(opacity .4s);
+			margin-right: 2rem;
+			&:last-child {
+				margin-right: 0;
+			}
+			&:hover {
+				opacity: .6;
+			}
+			&.sendBtn {
+				background-color: $sub_color;
+			}
+			&.backBtn {
+				background-color: #929292;
+			}
+		}
+	}
+}
+
+// 学内専用
+.switch {
+	width: 95%;
+	margin: 0 auto;
+	ul {
+		display: flex;
+		justify-content: flex-start;
+		li {
+			flex: 0 0 30%;
+			max-width: 30%;
+			margin-right: 2rem;
+			&:last-child {
+				margin-right: 0;
+			}
+			&:before {
+				display: none !important;
+			}
+			a {
+				width: 100%;
+				border-bottom: 1px solid $main_color;
+				color: $text_color;
+				display: flex;
+				justify-content: center;
+				text-decoration: none;
+				padding-bottom: .5rem;
+				@include fontsize(20);
+				&.active {
+					color: $sub_color;
+					border-bottom: 3px solid $sub_color;
+				}
+			}
+		}
+	}
+}
+
+.Cnt {
+	section {
+		> div {
+			margin-top: 2rem;
+		}
+	}
+}
+
+// 新着情報
+.mc-News {
+	> div {
+		&:nth-of-type(n+2) {
+			margin-top: 0rem;
+		}
+	}
+	&_Item {
+		width: 95%;
+		margin: 1rem auto 0;
+		border-bottom: 1px dotted $border-color;
+
+		a, .nolink {
+			display: flex;
+			padding: .5rem;
+			text-decoration: none;
+			@include sp {
+				display: block;
+			}
+
+		}
+		a {
+			&:hover {
+				p {
+					text-decoration: underline;
+				}
+			}
+		}
+		time {
+			flex: 0 0 100px;
+			max-width: 100px;
+			color: $text_color;
+		}
+		p {
+			margin-top: 0;
+		}
+	}
+}
+
+.mc-Tab {
+	width: 77%;
+	margin: 30px auto !important;
+	@include sp {
+		width: 100%;
+	}
+	&_List {
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		&_Item {
+			flex: 0 0 24%;
+			max-width: 24%;
+			display: flex;
+			@include sp {
+				flex: 0 0 48%;
+				max-width: 48%;
+			}
+		}
+	}
+	&_Button {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		min-height: 55px;
+		width: 100%;
+		background-color: #fff;
+		text-decoration: none;
+		position: relative;
+		@include fontsize(18);
+		@include transition(all .4s);
+		@include sp {
+			@include fontsize(16);
+			min-height: auto;
+			padding: .5rem 0;
+			margin-bottom: .5rem;
+		}
+		&:after {
+			content: "";
+			width: 100%;
+			height: 3px;
+			display: inline-block;
+			background-color: #dcdcdc;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+		}
+		.Tab_Selected &,
+		&:hover {
+			background-color: $sub_color;
+			color: #fff;
+			&:after {
+				display: none;
+			}
+		}
+	}
+}
+
+.mc-Tabpanel {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	@include sp {
+		margin-top: 30px !important;
+		display: block;
+	}
+	&:after {
+		flex: 0 0 32%;
+		max-width: 32%;
+		display: block;
+		content: "";
+	}
+	&_Item {
+		flex: 0 0 32%;
+		max-width: 32%;
+		border: 1px solid $main_color;
+		padding: 15px;
+		margin-bottom: 1.5rem;
+		background-color: #fff;
+		@include sp {
+			max-width: 100%;
+		}
+		a {
+			text-decoration: none;
+			color: $text_color;
+			display: block;
+			@include transition(opacity .4s);
+			&:hover {
+				opacity: .6;
+			}
+		}
+		&_Img {
+			text-align: center;
+			border: 1px solid #cccccc;
+			margin-bottom: .5rem;
+			img {
+				max-height: 160px;
+			}
+		}
+		&_Cnt {
+			&_Header {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				@include tablet {
+					display: block;
+				}
+				span {
+					@include fontsize(14);
+					background-color: #8b9b23;
+					color: #fff;
+					padding: .25rem .5rem;
+					min-width: 115px;
+					text-align: center;
+					&.open {
+						background-color: #E68E66;
+					}
+					&.report {
+						background-color: #7689FA;
+					}
+					@include tablet {
+						display: block;
+					}
+				}
+			}
+			&_Txt {
+				@include fontsize(14);
+				padding: 0 !important;
+				margin-top: .5rem !important;
+			}
+		}
+	}
+}
+
+#entryPager {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	.current_page,
+	.link_page {
+		background: #fff;
+		border: 1px solid $main_color;
+		text-decoration: none;
+		padding: 0 .5rem;
+		margin-right: 1rem;
+		&:hover {
+			background-color: $main_color;
+			color: #fff;
+		}
+	}
+	.current_page {
+		background-color: $main_color;
+		color: #fff;
+	}
+	.link_before {
+		margin-right: 1rem;
+	}
+}
+.clamp_font {
+	// @include CL_fontsize(スマホの時の表示フォントサイズ, PCの時のフォント表示サイズ);
+@include CL_fontsize(16, 32);
+}
+
+
+/* ------------------------------------
+	width style
+------------------------------------ */
+@for $i from 0 through 95 {.wid#{$i + 5}{width: $i+5% !important;}}
+
+
+/* ------------------------------------
+margin padding style
+------------------------------------ */
+@for $i from 0 through 10 {
+	.mt#{$i * 10}{
+		margin-top: $i * 10px !important;
+	}
+	.mb#{$i * 10}{
+		margin-bottom: $i * 10px !important;
+	}
+}
+@for $i from 0 through 10 {
+	.pr#{$i * 10}{
+		padding-right: $i * 10px !important;
+	}
+	.pl#{$i * 10}{
+		padding-left: $i * 10px !important;
+	}
+}
